@@ -621,6 +621,22 @@ public class PrimObject {
         return anObject;
     }
 
+    public PrimObject p500(PrimObject receiver, PrimContext context) {
+      // Behavior>>selectors
+      PrimObject object = null;
+      Set<String> methods = ((PrimObjectClass)receiver).selectors();
+      List<PrimObject> array = new ArrayList<PrimObject>();
+      if (methods.size() > 0) {
+        for (String sel : methods) {
+            array.add( symbol(sel));
+        }
+        object = instanceOf("Array").with(array);
+      } else {
+        object = instanceOf("Array");
+      }
+      return object;
+    }
+
     public static boolean classIsAnAdaptorClass(PrimObject smalltalkClass) {
         synchronized (PrimObject.class) {
             return ADAPTOR_CLASSES.contains(smalltalkClass);

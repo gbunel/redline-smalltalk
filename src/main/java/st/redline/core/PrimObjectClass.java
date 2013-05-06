@@ -3,6 +3,7 @@ package st.redline.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 
 // Adds a method dictionary and class hierarchy (superclass) to a Primitive Object.
@@ -104,5 +105,9 @@ public class PrimObjectClass extends PrimObject {
     PrimObject superclass(PrimObject superclass) {
         attributes[SUPERCLASS_INDEX] = superclass;
         return this;
+    }
+
+    public Set<String> selectors() {
+      return methods().keySet();
     }
 }
